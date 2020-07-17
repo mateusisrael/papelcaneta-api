@@ -1,0 +1,18 @@
+version: "3"
+
+
+services:
+    app:
+        build: .
+        command: npm start
+        ports:
+            - "3004:3000"
+        volumes: 
+            - .:/usr/app
+
+
+    mongo: 
+        image: mongo
+        restart: always
+        ports:
+            - "17017:27017"
