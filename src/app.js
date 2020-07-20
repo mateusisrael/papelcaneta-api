@@ -7,40 +7,24 @@ app.use(router);
 
 
 
-const UserSchema = mongoose.Schema({
-    name: String,
-    age: Number
-})
-const User = mongoose.model('User', UserSchema)
+// Mongoose Testing
+// const MovieSchema = mongoose.Schema({
+//     name: String,
+//     year: Number
+// })
+// const Movie = mongoose.model('movies', MovieSchema)
 
-const newUser = new User({ name: "Mateus", age: 21})
-newUser.save((err) => {
-    if(err) return console.log(err);
-    return console.log("New User added")
-})
-
-User.find((err) => {
-    if(err) return console.log(err)
-    console.log(newUser)
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
+// const newMovie = new Movie({ name: "Teste filme 1", year: 2100})
+// newMovie.save((err) => {
+//     if(err) return console.log(err);
+//     return console.log("New Movie added")
+// })
+// ====================
 
 
 
 mongoose.connect(
-    'mongodb://127.0.0.1:17017/',
+    'mongodb://127.0.0.1:17017/movie',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -51,6 +35,4 @@ mongoose.connect(
         console.log(`API at http://localhost:3000`) 
     });
 })
-.catch((err) => console.log(err))
-
-
+.catch((err) => console.log(err));

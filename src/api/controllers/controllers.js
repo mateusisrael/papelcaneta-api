@@ -1,11 +1,11 @@
-const db = require('../models/db.js');
+const service = require('../services/services');
 
+const getData = async(req, res, next) => {
+    const movies = await service.getAllMovies()
+    return res.send(await movies);
 
-const getData = (req, res, next) => {
-    res.send(JSON.stringify(db.data));
-    console.log(db.data);
 }
 
 module.exports = {
     getData
-};
+}
