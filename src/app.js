@@ -1,11 +1,17 @@
 const express = require('express');
 const router = require('./api/routes/routes.js');
+const cors = require('cors');
 const app = express();
 const PORT = 3000;
 const mongoose = require('mongoose');
-app.use(router);
 
+const myMid = (req, res, next) => {
+    console.log('foi');
+    next();
+}
 
+app.use(cors());
+// app.use(myMid);
 
 // Mongoose Testing
 // const MovieSchema = mongoose.Schema({
@@ -20,7 +26,7 @@ app.use(router);
 //     return console.log("New Movie added")
 // })
 // ====================
-
+app.use(router);
 
 
 mongoose.connect(

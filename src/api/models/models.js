@@ -1,21 +1,13 @@
 const mongoose = require('mongoose');
 
 
+
 // Schemas
 const MovieSchema = mongoose.Schema({
     name: String,
     year: Number
 })
-
-const UserSchema = mongoose.Schema({
-    name: String,
-    age: Number
-})
-
-
-
 const Movie = mongoose.model('movies', MovieSchema)
-const User = mongoose.model('User', UserSchema)
 
 
 
@@ -28,19 +20,25 @@ const findAll = async() => {
     return movies
 }
 
-// teste
-const getAllUsers = async() => {
-    const users = await User.find((err, users) => {
-    if(err) return console.log(err)
-        // console.log(newUser)
-        return users
-    })          
-    
-    return users;
+const addMovie = async (movie) => {
+    const newMovie = Movie({name: `${movie.name}`, year: `${movie.year}`})
+    newMovie.save((err) => {
+        if(err) return err;
+        return 'saved';
+    });
 }
 
 
+const removeMovie = async (movieName) => {
+    await Movie.deleteOne({ "name": `${movieName}` }, (err) => {
+        if (err) return err;
+        return 'removed'
+    })
+
+}
+
 module.exports = {
     findAll,
-    getAllUsers,
+    addMovie,
+    removeMovie
 }
