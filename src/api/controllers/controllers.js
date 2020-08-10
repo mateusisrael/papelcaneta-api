@@ -26,7 +26,6 @@ const delMovie = async (req, res, next) => {
     } catch (error) {
         res.send(error)
     }
-
 }
 
 module.exports = {
