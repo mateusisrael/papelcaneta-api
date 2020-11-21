@@ -3,33 +3,33 @@ const mongoose = require('mongoose');
 
 
 // Schemas
-const MovieSchema = mongoose.Schema({
-    name: String,
-    year: Number
+const TaskScheema = mongoose.Schema({
+    title: String,
+    description: String,
 })
-const Movie = mongoose.model('moovies', MovieSchema)
+const Task = mongoose.model('tasks', TaskScheema)
 
 
 
 const findAll = async() => {
-    const movies = await Movie.find((err, movies) => {
+    const tasks = await Task.find((err, tasks) => {
         if(err) return console.log(err);
-        return movies;
+        return tasks;
     })
 
-    return movies
+    return tasks
 }
 
-const addMovie = async (movie) => {
-    const newMovie = Movie({name: `${movie.name}`, year: `${movie.year}`})
-    newMovie.save((err) => {
+const addTask = async (task) => {
+    const newTask = Task({title: `${task.title}`, description: `${task.description}`})
+    newTask.save((err) => {
         if(err) return err;
     });
 }
 
 
-const removeMovie = async (movieId) => {
-    await Movie.deleteOne({ "_id": `${movieId}` }, (err) => {
+const removeTask = async (taskId) => {
+    await Task.deleteOne({ "_id": `${taskId}` }, (err) => {
         if (err) {
             console.log("Errooooo", err);
             return err;
@@ -40,6 +40,6 @@ const removeMovie = async (movieId) => {
 
 module.exports = {
     findAll,
-    addMovie,
-    removeMovie
+    addTask,
+    removeTask
 }

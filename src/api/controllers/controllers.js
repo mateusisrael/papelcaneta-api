@@ -1,30 +1,30 @@
 const service = require('../services/services');
 
 const getData = async(req, res, next) => {
-    const movies = await service.getAllMovies()
-    return res.send(movies);
+    const tasks = await service.getAllTasks()
+    return res.send(tasks);
 };
 
-const addMovie = async(req, res, next) => {
+const addTask = async(req, res, next) => {
     const newMovie = {
-        name: `${await req.body.name}`,
-        year: `${await req.body.year}`
+        title: `${await req.body.title}`,
+        description: `${await req.body.description}`
     }
 
     try {
-        await service.addMovie(newMovie)
-        res.send({"message": "new movie added"});
+        await service.addTask(newMovie)
+        res.send({"message": "new task added"});
     } catch (error) {
         console.log(error);
         res.send({"message": "internal server error"})
     }
 }
 
-const delMovie = async (req, res, next) => {
-    const movieId = req.query.movie_id
-    console.log(movieId);
+const delTask = async (req, res, next) => {
+    const taskId = req.query.task_id
+
     try {
-        await service.delMovie(movieId)
+        await service.delTask(taskId)
         res.send({"message": "removed"})
     } catch (error) {
         res.send(error)
@@ -33,6 +33,6 @@ const delMovie = async (req, res, next) => {
 
 module.exports = {
     getData,
-    addMovie,
-    delMovie
+    addTask,
+    delTask
 }

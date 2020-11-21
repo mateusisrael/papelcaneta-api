@@ -4,19 +4,19 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 router.get(
-    '/movies',
+    '/tasks',
     controllers.getData
 )
 
 router.post(
-    '/movies',
+    '/tasks',
     jsonParser,
-    controllers.addMovie
+    controllers.addTask
 )
 
 router.delete(
-    '/movies',
-    controllers.delMovie
+    '/tasks',
+    controllers.delTask
 )
 
 module.exports = router;

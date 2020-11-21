@@ -2,7 +2,7 @@ const models = require('../models/models');
 const { model } = require('mongoose');
 
 
-const getAllMovies = async() => {
+const getAllTasks = async() => {
 
     try{
         return await models.findAll();
@@ -12,18 +12,18 @@ const getAllMovies = async() => {
 }
 
 
-const addMovie = async(movie) => {
+const addTask = async(task) => {
     try{
-        await models.addMovie(movie)
+        await models.addTask(task)
     }catch(err) {
         return err;
     }
 }
 
 
-const delMovie = async(movieId) => {
+const delTask = async(taskId) => {
     try {
-        return await models.removeMovie(movieId)
+        return await models.delTask(taskId)
     } catch (err) {
         return err
     }
@@ -31,7 +31,7 @@ const delMovie = async(movieId) => {
 
 
 module.exports = {
-    getAllMovies,
-    addMovie,
-    delMovie
+    getAllTasks,
+    addTask,
+    delTask
 }

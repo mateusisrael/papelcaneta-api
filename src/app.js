@@ -22,7 +22,7 @@ const DB_CREDENTIALS = {
 }
 
 mongoose.connect(
-    'mongodb://localhost:17017/test',
+    'mongodb://localhost:17017/tasks',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
