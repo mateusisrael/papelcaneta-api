@@ -6,7 +6,6 @@ const getAllMovies = async() => {
 
     try{
         return await models.findAll();
-        // return "teste"
     }catch(err) {
         return err;
     }
@@ -14,19 +13,17 @@ const getAllMovies = async() => {
 
 
 const addMovie = async(movie) => {
-
     try{
-        await models.addMovie(movie);
-
+        await models.addMovie(movie)
     }catch(err) {
         return err;
     }
 }
 
 
-const delMovie = async(movieName) => {
+const delMovie = async(movieId) => {
     try {
-        models.removeMovie(movieName).then(res => {return res})
+        return await models.removeMovie(movieId)
     } catch (err) {
         return err
     }

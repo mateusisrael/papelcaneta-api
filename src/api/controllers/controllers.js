@@ -2,7 +2,7 @@ const service = require('../services/services');
 
 const getData = async(req, res, next) => {
     const movies = await service.getAllMovies()
-    return res.send(await movies);
+    return res.send(movies);
 };
 
 const addMovie = async(req, res, next) => {
@@ -10,19 +10,22 @@ const addMovie = async(req, res, next) => {
         name: `${await req.body.name}`,
         year: `${await req.body.year}`
     }
+
     try {
         await service.addMovie(newMovie)
-        res.send('ok');
+        res.send({"message": "new movie added"});
     } catch (error) {
-        res.send(error);
+        console.log(error);
+        res.send({"message": "internal server error"})
     }
 }
 
 const delMovie = async (req, res, next) => {
-    const movieName = req.query.movie_id
-    console.log(movieName);
+    const movieId = req.query.movie_id
+    console.log(movieId);
     try {
-        service.delMovie(movieName).then((promiseRes) => res.send(promiseRes))
+        await service.delMovie(movieId)
+        res.send({"message": "removed"})
     } catch (error) {
         res.send(error)
     }
