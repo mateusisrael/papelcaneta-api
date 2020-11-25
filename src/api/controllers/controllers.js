@@ -22,6 +22,7 @@ const addTask = async(req, res, next) => {
 
 const delTask = async (req, res, next) => {
     const taskId = req.query.task_id
+    console.log(taskId)
 
     try {
         await service.delTask(taskId)

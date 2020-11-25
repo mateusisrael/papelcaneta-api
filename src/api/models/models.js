@@ -13,11 +13,11 @@ const Task = mongoose.model('tasks', TaskScheema)
 
 const findAll = async() => {
     const tasks = await Task.find((err, tasks) => {
-        if(err) return console.log(err);
+        if(err) return err;
         return tasks;
     })
 
-    return tasks
+    return tasks.reverse();
 }
 
 const addTask = async (task) => {
@@ -30,10 +30,7 @@ const addTask = async (task) => {
 
 const removeTask = async (taskId) => {
     await Task.deleteOne({ "_id": `${taskId}` }, (err) => {
-        if (err) {
-            console.log("Errooooo", err);
-            return err;
-        };
+        if (err) return err;
     })
 
 }
