@@ -29,10 +29,9 @@ const addTask = async (task) => {
 
 
 const removeTask = async (taskId) => {
-    await Task.deleteOne({ "_id": `${taskId}` }, (err) => {
+    const task = await Task.deleteOne({ _id: `${taskId}` }, (err) => {
         if (err) return err;
     })
-
 }
 
 module.exports = {

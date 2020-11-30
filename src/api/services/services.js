@@ -23,7 +23,7 @@ const addTask = async(task) => {
 
 const delTask = async(taskId) => {
     try {
-        return await models.delTask(taskId)
+        return await models.removeTask(taskId)
     } catch (err) {
         return err
     }
